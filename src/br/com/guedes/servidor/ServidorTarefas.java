@@ -10,8 +10,10 @@ public class ServidorTarefas {
 		
 		System.out.println("-------- Iniciando servidor --------");
 		ServerSocket servidor = new ServerSocket(12345);
-		Socket accept = servidor.accept();
 		
-		
+		while(true) {
+			Socket accept = servidor.accept();
+			System.out.println("aceitando novo cliente na porta " + accept.getPort());
+		}
 	}
 }
