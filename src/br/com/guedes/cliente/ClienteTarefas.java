@@ -3,6 +3,7 @@ package br.com.guedes.cliente;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class ClienteTarefas {
 	
@@ -11,6 +12,11 @@ public class ClienteTarefas {
 		
 		System.out.println("conexao estabelecida");
 		
+		Scanner entrada = new Scanner(System.in);
+		
+		entrada.nextLine();
+		
+		entrada.close();
 		socket.close();
 	}
 }
