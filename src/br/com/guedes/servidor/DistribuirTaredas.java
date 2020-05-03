@@ -1,6 +1,7 @@
 package br.com.guedes.servidor;
 
 import java.net.Socket;
+import java.util.Scanner;
 
 public class DistribuirTaredas implements Runnable {
 
@@ -12,13 +13,19 @@ public class DistribuirTaredas implements Runnable {
 
 	@Override
 	public void run() {
-		
-		System.out.println("Distribuindo tarefas para " + socket);
-		
 		try {
+			System.out.println("Distribuindo tarefas para " + socket);
+			Scanner scanner = new Scanner(socket.getInputStream());
+			
+			while(scanner.hasNextLine()) {
+				String comando = scanner.nextLine();
+				System.out.println(comando);
+			}
+			
+			scanner.close();
 			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
