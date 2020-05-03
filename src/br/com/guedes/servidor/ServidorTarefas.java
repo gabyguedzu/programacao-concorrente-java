@@ -13,7 +13,7 @@ public class ServidorTarefas {
 		System.out.println("-------- Iniciando servidor --------");
 		ServerSocket servidor = new ServerSocket(12345);
 		
-		ExecutorService threadPool = Executors.newFixedThreadPool(2);
+		ExecutorService threadPool = Executors.newCachedThreadPool();
 		
 		while(true) {
 			Socket socket = servidor.accept();
