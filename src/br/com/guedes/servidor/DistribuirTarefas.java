@@ -7,9 +7,11 @@ import java.util.Scanner;
 public class DistribuirTarefas implements Runnable {
 
 	private Socket socket;
+	private ServidorTarefas servidor;
 
-	public DistribuirTarefas(Socket socket) {
+	public DistribuirTarefas(Socket socket, ServidorTarefas servidor) {
 		this.socket = socket;
+		this.servidor = servidor;
 	}
 
 	@Override
@@ -29,6 +31,10 @@ public class DistribuirTarefas implements Runnable {
 					break;
 				case "c2":
 					saidaCliente.println("c2 recebido");
+					break;
+				case "fim":
+					saidaCliente.println("shutdown");
+					servidor.desligar();
 					break;
 				default:
 					saidaCliente.println("comando não encontrado");
