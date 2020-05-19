@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 public class DistribuirTarefas implements Runnable {
 
@@ -36,8 +37,13 @@ public class DistribuirTarefas implements Runnable {
 					break;
 				case "c2":
 					saidaCliente.println("c2 recebido");
-					ComandoC2 c2 = new ComandoC2(saidaCliente);
-					threadPool.execute(c2);
+					ComandoC2ChamaWS c2 = new ComandoC2ChamaWS(saidaCliente);
+					AcessaBancoDeDados c2Banco = new AcessaBancoDeDados(saidaCliente);
+					Future<String> featureAWS = threadPool.submit(c2);
+					Future<String> featureBanco = threadPool.submit(c2Banco);
+
+					String resultadoAWS = featureAWS.get();
+
 					break;
 				case "fim":
 					saidaCliente.println("shutdown");
