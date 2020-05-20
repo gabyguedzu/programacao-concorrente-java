@@ -1,20 +1,20 @@
 package br.com.guedes.teste;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class TesteFila {
 
-    public static void main(String[] args) {
-        Queue<String> fila = new LinkedList<>();
+    public static void main(String[] args) throws InterruptedException {
+        BlockingQueue<String> fila = new ArrayBlockingQueue(3);
 
-        fila.offer("C1");
-        fila.offer("C2");
-        fila.offer("C3");
+        fila.put("C1");
+        fila.put("C2");
+        fila.put("C3");
 
-        System.out.println("pegar elemntos C1 " + fila.poll());
-        System.out.println("pegar elemntos C2 " + fila.poll());
-        System.out.println("pegar elemntos C3 " + fila.poll());
+        System.out.println("pegar elemntos C1 " + fila.take());
+        System.out.println("pegar elemntos C2 " + fila.take());
+        System.out.println("pegar elemntos C3 " + fila.take());
 
         System.out.println(fila.size());
     }
