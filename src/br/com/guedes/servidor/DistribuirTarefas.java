@@ -42,7 +42,8 @@ public class DistribuirTarefas implements Runnable {
 					Future<String> featureAWS = threadPool.submit(c2);
 					Future<String> featureBanco = threadPool.submit(c2Banco);
 
-					String resultadoAWS = featureAWS.get();
+					//String resultadoAWS = featureAWS.get();
+					this.threadPool.submit(new JuntaResultadosFeatureWSFeatureBanco(featureAWS, featureBanco, saidaCliente));
 
 					break;
 				case "fim":
